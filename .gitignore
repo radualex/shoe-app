@@ -109,3 +109,4 @@ dist
 
 web-build
 .netlify
+.DS_Store

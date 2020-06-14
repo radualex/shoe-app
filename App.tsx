@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import { AppStyle } from "./App.style";
+
+import { MainText } from "./Components/Text/MainText";
+import { SecondaryText } from "./Components/Text/SecondaryText";
 
 export default class App extends Component {
   render() {
     return (
       <View style={AppStyle.container}>
-        <Text>Open up App.tsx to start working on your app! Hello World!</Text>
+        <MainText>Hello World!</MainText>
+        <SecondaryText>Hello World!</SecondaryText>
       </View>
     );
   }
