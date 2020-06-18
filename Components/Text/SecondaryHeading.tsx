@@ -3,16 +3,13 @@ import { Text } from "react-native";
 import { AppLoading } from "expo";
 import { Raleway_600SemiBold } from "@expo-google-fonts/raleway";
 import * as Font from "expo-font";
+import { actuatedNormalize } from "../../lib/Utility";
 
 let customFonts = {
   Raleway_600SemiBold,
 };
 
-interface MainTextProps {
-  style?: any;
-}
-
-export class MainText extends Component<MainTextProps> {
+export class SecondaryHeading extends Component {
   state = {
     fontsLoaded: false,
   };
@@ -29,7 +26,12 @@ export class MainText extends Component<MainTextProps> {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <Text style={[{ fontFamily: "Raleway_600SemiBold" }, this.props.style]}>
+        <Text
+          style={{
+            fontFamily: "Raleway_600SemiBold",
+            fontSize: actuatedNormalize(10.72),
+          }}
+        >
           {this.props.children}
         </Text>
       );
