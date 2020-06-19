@@ -8,3 +8,5 @@ export const AppStyle = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export const PaddingHorizontal = 30;

@@ -29,7 +29,7 @@ export class SecondaryHeading extends Component {
         <Text
           style={{
             fontFamily: "Raleway_600SemiBold",
-            fontSize: actuatedNormalize(10.72),
+            fontSize: actuatedNormalize(24),
           }}
         >
           {this.props.children}

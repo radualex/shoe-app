@@ -1,19 +1,34 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 
-import { AppStyle } from "./App.style";
-
-import { MainText } from "./Components/Text/MainText";
-import { SecondaryText } from "./Components/Text/SecondaryText";
-import { MainHeading } from "./Components/Text/MainHeading";
-import { SecondaryHeading } from "./Components/Text/SecondaryHeading";
-
+import { PaddingHorizontal } from "./App.style";
 import { Home } from "./Pages/Home/Home";
 
-// TODO: router
+import { Header } from "react-native-elements";
+
+import { mainStyleConstants } from "./main.style";
+
+import { Hamburger } from "./Components/Hamburger";
+import { RightNav } from "./Components/RightNav";
+
 export default class App extends Component {
   render() {
-    return <Home />;
-    // return (<View></View>)
+    return (
+      <ScrollView>
+        <Header
+          leftComponent={<Hamburger />}
+          rightComponent={<RightNav notifications={3} />}
+          backgroundColor={mainStyleConstants.theme.light.white}
+          containerStyle={{
+            borderBottomWidth: 0,
+            justifyContent: "space-evenly",
+            marginTop: 32,
+            paddingHorizontal: PaddingHorizontal,
+          }}
+        ></Header>
+        {/* TODO: Router here */}
+        <Home />
+      </ScrollView>
+    );
   }
 }

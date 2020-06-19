@@ -1,23 +1,31 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import { Header } from "react-native-elements";
+import { MainHeading } from "../../Components/Text/MainHeading";
 
-import { mainStyleConstants } from "../../main.style";
-import { HeaderStyle } from "./Home.style";
-
-import { Hamburger } from "../../Components/Hamburger";
-import { RightNav } from "../../Components/RightNav";
+import { HomeStyle } from "./Home.style";
+import { Dropdown } from "../../Components/Dropdown";
 
 export class Home extends Component {
   render() {
     return (
-      <View>
-        <Header
-          leftComponent={<Hamburger />}
-          rightComponent={<RightNav notifications={3} />}
-          backgroundColor={mainStyleConstants.theme.light.white}
-          containerStyle={HeaderStyle.container}
-        ></Header>
+      <View style={HomeStyle.main}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+          }}
+        >
+          <MainHeading style={{ marginRight: "auto" }}>Shoes</MainHeading>
+          <Dropdown
+            options={[
+              { label: "Relevancy", value: "rel" },
+              { label: "Price low", value: "plow" },
+              { label: "Price high", value: "phigh" },
+            ]}
+          ></Dropdown>
+        </View>
       </View>
     );
   }

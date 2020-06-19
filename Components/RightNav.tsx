@@ -39,7 +39,6 @@ const RightNavView = StyleSheet.create({
     width: 32,
     height: 32,
     backgroundColor: mainStyleConstants.theme.light.dark,
-    textAlign: "center",
     borderRadius: 50,
   },
   notifcationText: {

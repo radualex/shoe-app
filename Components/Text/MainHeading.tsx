@@ -9,7 +9,11 @@ let customFonts = {
   Raleway_700Bold,
 };
 
-export class MainHeading extends Component {
+interface MainHeadingProps {
+  style?: any;
+}
+
+export class MainHeading extends Component<MainHeadingProps> {
   state = {
     fontsLoaded: false,
   };
@@ -27,10 +31,13 @@ export class MainHeading extends Component {
     if (this.state.fontsLoaded) {
       return (
         <Text
-          style={{
-            fontFamily: "Raleway_700Bold",
-            fontSize: actuatedNormalize(10.72),
-          }}
+          style={[
+            {
+              fontFamily: "Raleway_700Bold",
+              fontSize: actuatedNormalize(24),
+            },
+            this.props.style,
+          ]}
         >
           {this.props.children}
         </Text>
