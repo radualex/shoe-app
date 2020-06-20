@@ -55,5 +55,5 @@ const iconStyle = {
 };
 
 const searchIconStyle = {
-  marginRight: iconMaringRightSize + 10,
+  marginRight: iconMaringRightSize + 6,
 };

@@ -3,7 +3,17 @@ import { PaddingHorizontal } from "../../App.style";
 
 export const HomeStyle = StyleSheet.create({
   main: {
-    paddingHorizontal: PaddingHorizontal,
     marginTop: 36,
+  },
+  header: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingHorizontal: PaddingHorizontal,
+    zIndex: 1,
+  },
+  content: {
+    marginTop: 18,
   },
 });

@@ -8,7 +8,11 @@ let customFonts = {
   Raleway_400Regular,
 };
 
-export class SecondaryText extends Component {
+interface SecondaryTextProps {
+  style?: any;
+}
+
+export class SecondaryText extends Component<SecondaryTextProps> {
   state = {
     fontsLoaded: false,
   };
@@ -25,7 +29,7 @@ export class SecondaryText extends Component {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <Text style={{ fontFamily: "Raleway_400Regular" }}>
+        <Text style={[{ fontFamily: "Raleway_400Regular" }, this.props.style]}>
           {this.props.children}
         </Text>
       );

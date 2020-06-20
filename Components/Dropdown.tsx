@@ -61,10 +61,8 @@ export class Dropdown extends Component<DropdownProps, DropdownState> {
             containerStyle={DropdownStyle.container}
             style={DropdownStyle.main}
             dropDownStyle={DropdownStyle.dropdown}
-            placeholderStyle={DropdownStyle.placeholder}
             labelStyle={DropdownStyle.label}
             itemStyle={DropdownStyle.item}
-            // TODO: Needs top: 3 for web
             arrowStyle={DropdownStyle.arrow}
             onChangeItem={this._handleChangedItem}
           />
@@ -91,13 +89,15 @@ const DropdownStyle = StyleSheet.create({
     right: 10,
     width: 100,
   },
-  placeholder: { fontFamily: "Raleway_700Bold" },
-  label: { fontFamily: "Raleway_600SemiBold", textAlign: "right" },
+  label: {
+    fontFamily: "Raleway_700Bold",
+    textAlign: "right",
+  },
   item: {
     flex: 1,
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "center",
   },
-  arrow: { top: 1, marginLeft: 10 },
+  arrow: { marginLeft: 10 },
 });
