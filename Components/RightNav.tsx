@@ -3,8 +3,8 @@ import { View, StyleSheet } from "react-native";
 
 import { mainStyleConstants } from "../main.style";
 
-import SearchIcon from "../assets/search.svg";
-import FilterIcon from "../assets/filter.svg";
+import { SearchSvg } from "./Svg/Search";
+import { FilterSvg } from "./Svg/Filter";
 import { MainText } from "../Components/Text/MainText";
 
 interface RightNavProps {
@@ -15,8 +15,8 @@ export class RightNav extends Component<RightNavProps> {
   render() {
     return (
       <View style={RightNavView.container}>
-        <SearchIcon style={searchIconStyle} />
-        <FilterIcon style={iconStyle} />
+        <SearchSvg style={searchIconStyle} />
+        <FilterSvg style={iconStyle} />
         <View style={RightNavView.notificationView}>
           <MainText style={RightNavView.notifcationText}>
             {this.props.notifications}

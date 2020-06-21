@@ -11,7 +11,7 @@ import { mainStyleConstants } from "../main.style";
 
 import { MainText } from "../Components/Text/MainText";
 import { SecondaryText } from "../Components/Text/SecondaryText";
-import Hearth from "../assets/hearth.svg";
+import { HearthSvg } from "./Svg/Hearth";
 
 const FavouriteIconSize = 18;
 
@@ -34,11 +34,7 @@ export class Card extends Component<CardProps> {
               {this.props.currency} {this.props.price}
             </SecondaryText>
           </View>
-          <Hearth
-            width={FavouriteIconSize}
-            height={FavouriteIconSize}
-            style={FavouriteStyle}
-          />
+          <HearthSvg style={FavouriteStyle} />
         </View>
       </View>
     );
@@ -72,4 +68,6 @@ const CardStyle = StyleSheet.create({
 
 const FavouriteStyle = {
   marginTop: 24,
+  width: FavouriteIconSize,
+  height: FavouriteIconSize,
 };
