@@ -10,17 +10,17 @@ export class Home extends Component {
   render() {
     return (
       <View style={HomeStyle.main}>
-        <View style={HomeStyle.header}>
-          <MainHeading style={{ marginRight: "auto" }}>Shoes</MainHeading>
-          <Dropdown
-            options={[
-              { label: "Relevancy", value: "rel" },
-              { label: "Price low", value: "plow" },
-              { label: "Price high", value: "phigh" },
-            ]}
-          ></Dropdown>
-        </View>
         <ScrollView style={HomeStyle.content}>
+          <View style={HomeStyle.header}>
+            <MainHeading style={{ marginRight: "auto" }}>Shoes</MainHeading>
+            <Dropdown
+              options={[
+                { label: "Relevancy", value: "rel" },
+                { label: "Price low", value: "plow" },
+                { label: "Price high", value: "phigh" },
+              ]}
+            ></Dropdown>
+          </View>
           <Card
             image={require("../../assets/nike/air1.png")}
             name={"Nike Air Max 97 Air Force 1"}
