@@ -63,7 +63,6 @@ export default class App extends Component<{}, AppState> {
   };
 
   _handleDrawerUpdate = (isDrawerOpen: boolean) => {
-    console.log(isDrawerOpen);
     this.setState({ isDrawerOpen });
   };
 

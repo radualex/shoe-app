@@ -16,7 +16,9 @@ class CustomDrawer extends React.Component<{
   onDrawerUpdate: Function;
 }> {
   componentDidUpdate(prevProps: any) {
-    this.props.onDrawerUpdate(!prevProps.isDrawerOpen);
+    if (this.props.isDrawerOpen !== prevProps.isDrawerOpen) {
+      this.props.onDrawerUpdate(!prevProps.isDrawerOpen);
+    }
   }
 
   render() {
