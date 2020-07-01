@@ -1,13 +1,11 @@
 import "react-native-gesture-handler";
 import React, { Component } from "react";
-import { View } from "react-native";
 import { AppLoading } from "expo";
 import { Raleway_600SemiBold } from "@expo-google-fonts/raleway";
 import * as Font from "expo-font";
 
 import { Header } from "react-native-elements";
 import { Home } from "./Pages/Home/Home";
-import { MainText } from "./Components/Text/MainText";
 import { Hamburger } from "./Components/Hamburger";
 import { RightNav } from "./Components/RightNav";
 import CustomDrawer from "./Components/Drawer";
@@ -15,15 +13,9 @@ import CustomDrawer from "./Components/Drawer";
 import { PaddingHorizontal } from "./App.style";
 import { mainStyleConstants } from "./main.style";
 
-import { actuatedNormalize } from "./lib/Utility";
-
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 
-import {
-  createDrawerNavigator,
-  DrawerItemList,
-  DrawerContentScrollView,
-} from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 export const navigationRef = React.createRef<any>();
 const Drawer = createDrawerNavigator();
@@ -92,6 +84,7 @@ export default class App extends Component<{}, AppState> {
               <CustomDrawer
                 {...props}
                 onDrawerUpdate={this._handleDrawerUpdate}
+                collectionText={"Summer collection"}
               />
             )}
           >
