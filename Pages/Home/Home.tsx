@@ -1,12 +1,25 @@
 import React, { Component } from "react";
 import { View, ScrollView } from "react-native";
 import { MainHeading } from "../../Components/Text/MainHeading";
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from "react-navigation";
 
 import { HomeStyle } from "./Home.style";
 import { Dropdown } from "../../Components/Dropdown";
 import { Card } from "../../Components/Card";
 
-export class Home extends Component {
+interface HomeProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
+
+export class Home extends Component<HomeProps> {
+  _handleOnPress = () => {
+    this.props.navigation.navigate("Details");
+  };
+
   render() {
     return (
       <View style={HomeStyle.main}>
@@ -26,6 +39,7 @@ export class Home extends Component {
             name={"Nike Air Max 97 Air Force 1"}
             currency={"$"}
             price={"270.00"}
+            onPress={this._handleOnPress}
           />
           <Card
             image={require("../../assets/nike/air2.png")}

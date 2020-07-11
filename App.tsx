@@ -6,6 +6,7 @@ import * as Font from "expo-font";
 
 import { Header } from "react-native-elements";
 import { Home } from "./Pages/Home/Home";
+import { Details } from "./Pages/Details/Details";
 import { Hamburger } from "./Components/Hamburger";
 import { RightNav } from "./Components/RightNav";
 import CustomDrawer from "./Components/Drawer";
@@ -92,6 +93,7 @@ export default class App extends Component<{}, AppState> {
             <Drawer.Screen name="New in" component={Home} />
             <Drawer.Screen name="Sale" component={Home} />
             <Drawer.Screen name="Profile" component={Home} />
+            <Drawer.Screen name="Details" component={Details} />
           </Drawer.Navigator>
         </NavigationContainer>
       );

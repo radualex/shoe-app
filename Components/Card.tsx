@@ -12,6 +12,7 @@ import { mainStyleConstants } from "../main.style";
 import { MainText } from "../Components/Text/MainText";
 import { SecondaryText } from "../Components/Text/SecondaryText";
 import { HearthSvg } from "./Svg/Hearth";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const FavouriteIconSize = 18;
 
@@ -20,6 +21,7 @@ interface CardProps {
   name: string;
   currency: string;
   price: string;
+  onPress?: Function;
 }
 
 export class Card extends Component<CardProps> {
@@ -27,13 +29,18 @@ export class Card extends Component<CardProps> {
     return (
       <View>
         <View style={CardStyle.main}>
-          <View style={CardStyle.column}>
+          <TouchableOpacity
+            style={CardStyle.column}
+            onPress={() => {
+              this.props.onPress!();
+            }}
+          >
             <Image source={this.props.image} style={CardStyle.shoe} />
             <MainText style={CardStyle.shoeName}>{this.props.name}</MainText>
             <SecondaryText style={CardStyle.shoePrice}>
               {this.props.currency} {this.props.price}
             </SecondaryText>
-          </View>
+          </TouchableOpacity>
           <HearthSvg style={FavouriteStyle} />
         </View>
       </View>
@@ -59,7 +66,7 @@ const CardStyle = StyleSheet.create({
   },
   shoe: {
     height: 150,
-    width: Dimensions.get("window").width,
+    width: Dimensions.get("window").width - 75,
     resizeMode: "contain",
   },
   shoeName: { marginVertical: 5 },

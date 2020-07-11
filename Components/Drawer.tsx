@@ -20,6 +20,8 @@ interface CustomDrawerProps
   collectionText?: String;
 }
 
+interface CustomDrawerState {}
+
 class CustomDrawer extends React.Component<CustomDrawerProps> {
   componentDidUpdate(prevProps: any) {
     if (this.props.isDrawerOpen !== prevProps.isDrawerOpen) {
@@ -27,7 +29,15 @@ class CustomDrawer extends React.Component<CustomDrawerProps> {
     }
   }
 
+  _filterMenuItems = () => {
+    return this.props.state.routes.filter((item) => item.name !== "Details");
+  };
+
   render() {
+    const { state, ...rest } = this.props;
+    const newState = { ...state }; //copy from state before applying any filter. do not change original state
+    newState.routes = this._filterMenuItems();
+    
     return (
       <View style={CustomDrawerStyle.mainView}>
         <DrawerContentScrollView
@@ -35,7 +45,8 @@ class CustomDrawer extends React.Component<CustomDrawerProps> {
           style={CustomDrawerStyle.contentScrollView}
         >
           <DrawerItemList
-            {...this.props}
+            state={newState}
+            {...rest}
             itemStyle={CustomDrawerStyle.itemListItem}
             labelStyle={CustomDrawerStyle.itemListLabel}
           />
