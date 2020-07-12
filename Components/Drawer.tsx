@@ -20,8 +20,6 @@ interface CustomDrawerProps
   collectionText?: String;
 }
 
-interface CustomDrawerState {}
-
 class CustomDrawer extends React.Component<CustomDrawerProps> {
   componentDidUpdate(prevProps: any) {
     if (this.props.isDrawerOpen !== prevProps.isDrawerOpen) {

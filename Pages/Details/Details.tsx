@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { View, ScrollView } from "react-native";
 import { MainHeading } from "../../Components/Text/MainHeading";
+import { Slider } from "../../Components/Slider";
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
 } from "react-navigation";
+
+import { DetailsStyle } from "./Details.style";
 
 interface DetailsProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -13,6 +16,10 @@ interface DetailsProps {
 
 export class Details extends Component<DetailsProps> {
   render() {
-    return <View></View>;
+    return (
+      <ScrollView style={DetailsStyle.main}>
+        <Slider />
+      </ScrollView>
+    );
   }
 }

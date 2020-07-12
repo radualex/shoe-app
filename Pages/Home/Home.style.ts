@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
 import { PaddingHorizontal } from "../../App.style";
+import { mainStyleConstants } from "../../main.style";
 
 export const HomeStyle = StyleSheet.create({
   main: {
-    backgroundColor: "white",
+    backgroundColor: mainStyleConstants.theme.light.white,
     flex: 1,
     flexDirection: "column",
   },

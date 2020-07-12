@@ -28,12 +28,14 @@ let customFonts = {
 interface AppState {
   fontsLoaded: boolean;
   isDrawerOpen: boolean;
+  isHeaderDisplayed: boolean;
 }
 
 export default class App extends Component<{}, AppState> {
   readonly state = {
     fontsLoaded: false,
     isDrawerOpen: false,
+    isHeaderDisplayed: false, // set to true
   };
 
   static navigationOptions = {
@@ -62,7 +64,16 @@ export default class App extends Component<{}, AppState> {
   render() {
     if (this.state.fontsLoaded) {
       return (
-        <NavigationContainer ref={navigationRef}>
+        <NavigationContainer
+          ref={navigationRef}
+          onStateChange={() => {
+            const currentRouteName = navigationRef.current.getCurrentRoute()
+              .name;
+            if (currentRouteName === "Details") {
+              this.setState({ isHeaderDisplayed: false });
+            }
+          }}
+        >
           <Header
             leftComponent={
               <Hamburger
@@ -75,10 +86,11 @@ export default class App extends Component<{}, AppState> {
             containerStyle={{
               borderBottomWidth: 0,
               paddingHorizontal: PaddingHorizontal,
+              display: this.state.isHeaderDisplayed ? "flex" : "none",
             }}
           ></Header>
           <Drawer.Navigator
-            initialRouteName="Home"
+            initialRouteName="Details"
             drawerStyle={{ width: "100%" }}
             screenOptions={{ swipeEnabled: false }}
             drawerContent={(props) => (

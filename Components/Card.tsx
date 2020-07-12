@@ -27,22 +27,20 @@ interface CardProps {
 export class Card extends Component<CardProps> {
   render() {
     return (
-      <View>
-        <View style={CardStyle.main}>
-          <TouchableOpacity
-            style={CardStyle.column}
-            onPress={() => {
-              this.props.onPress!();
-            }}
-          >
-            <Image source={this.props.image} style={CardStyle.shoe} />
-            <MainText style={CardStyle.shoeName}>{this.props.name}</MainText>
-            <SecondaryText style={CardStyle.shoePrice}>
-              {this.props.currency} {this.props.price}
-            </SecondaryText>
-          </TouchableOpacity>
-          <HearthSvg style={FavouriteStyle} />
-        </View>
+      <View style={CardStyle.main}>
+        <TouchableOpacity
+          style={CardStyle.column}
+          onPress={() => {
+            this.props.onPress!();
+          }}
+        >
+          <Image source={this.props.image} style={CardStyle.shoe} />
+          <MainText style={CardStyle.shoeName}>{this.props.name}</MainText>
+          <SecondaryText style={CardStyle.shoePrice}>
+            {this.props.currency} {this.props.price}
+          </SecondaryText>
+        </TouchableOpacity>
+        <HearthSvg style={FavouriteStyle} />
       </View>
     );
   }
