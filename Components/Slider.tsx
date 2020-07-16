@@ -20,6 +20,12 @@ interface SliderState {
   active: number;
 }
 
+const imageSources = [
+  { source: require("../assets/nike/air1.png") },
+  { source: require("../assets/nike/air2.png") },
+  { source: require("../assets/nike/air3.png") },
+];
+
 export class Slider extends Component<{}, SliderState> {
   readonly state = {
     active: 0,
@@ -42,23 +48,31 @@ export class Slider extends Component<{}, SliderState> {
           pagingEnabled
           horizontal
           onScroll={this._handleOnSliderChange}
-          scrollEventThrottle={1}
+          scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
           style={SliderStyle.column}
         >
-          <Image
-            source={require("../assets/nike/air1.png")}
-            style={SliderStyle.shoe}
-          />
-          <Image
-            source={require("../assets/nike/air2.png")}
-            style={SliderStyle.shoe}
-          />
-          <Image
-            source={require("../assets/nike/air3.png")}
-            style={SliderStyle.shoe}
-          />
+          {imageSources.map((imageSource, index) => (
+            <Image
+              key={index}
+              source={imageSource.source}
+              style={SliderStyle.shoe}
+            />
+          ))}
         </ScrollView>
+        <View style={SliderStyle.pagination}>
+          {imageSources.map((imageSource, index) => (
+            <View
+              key={index}
+              style={[
+                SliderStyle.bullet,
+                index === this.state.active
+                  ? SliderStyle.activeBullet
+                  : SliderStyle.passiveBullet,
+              ]}
+            />
+          ))}
+        </View>
       </View>
     );
   }
@@ -67,19 +81,40 @@ export class Slider extends Component<{}, SliderState> {
 const SliderStyle = StyleSheet.create({
   main: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     backgroundColor: mainStyleConstants.theme.light.gray,
     borderRadius: 25,
-    paddingHorizontal: 24,
+    paddingRight: 24,
     marginHorizontal: 6,
-    marginTop: Platform.OS !== "web" ? 50 : 6,
+    marginTop: Platform.OS !== "web" ? 32 : 6,
   },
   column: {
     width: Dimensions.get("window").width,
   },
   shoe: {
     height: 150,
-    width: Dimensions.get("window").width - 75,
+    width: Dimensions.get("window").width,
     resizeMode: "contain",
+  },
+  pagination: {
+    flexDirection: "row",
+    alignSelf: "center",
+    marginBottom: 30,
+    marginTop: 10,
+    marginLeft: 24,
+  },
+  bullet: {
+    borderRadius: 100 / 2,
+    marginHorizontal: 3.5,
+  },
+  activeBullet: {
+    width: 20,
+    height: 5,
+    backgroundColor: mainStyleConstants.theme.light.dark,
+  },
+  passiveBullet: {
+    width: 10,
+    height: 5,
+    backgroundColor: mainStyleConstants.theme.light.darkerGray,
   },
 });
