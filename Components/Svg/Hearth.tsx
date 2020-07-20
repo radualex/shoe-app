@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import Svg, { Rect, Line, G, Path } from "react-native-svg";
+import Svg, { Rect, G, Path } from "react-native-svg";
 
 import { SvgProps } from "./Interfaces/SvgProps";
 

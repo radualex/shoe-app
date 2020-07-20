@@ -9,4 +9,4 @@ export const AppStyle = StyleSheet.create({
   },
 });
 
-export const PaddingHorizontal = 30;
+export const PaddingHorizontal = 26;

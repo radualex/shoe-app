@@ -46,18 +46,21 @@ export class Home extends Component<HomeProps> {
             name={"Nike Air Max 95"}
             currency={"$"}
             price={"235.00"}
+            onPress={this._handleOnPress}
           />
           <Card
             image={require("../../assets/nike/air3.png")}
             name={"Nike Air Max 270 React"}
             currency={"$"}
             price={"285.00"}
+            onPress={this._handleOnPress}
           />
           <Card
             image={require("../../assets/nike/air1.png")}
             name={"Nike Air Max 97 Air Force 1"}
             currency={"$"}
             price={"275.00"}
+            onPress={this._handleOnPress}
           />
         </ScrollView>
       </View>

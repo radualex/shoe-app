@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import { MainHeading } from "../../Components/Text/MainHeading";
 import { Slider } from "../../Components/Slider";
 import {
@@ -18,7 +18,7 @@ export class Details extends Component<DetailsProps> {
   render() {
     return (
       <ScrollView style={DetailsStyle.main}>
-        <Slider />
+        <Slider {...this.props} />
       </ScrollView>
     );
   }

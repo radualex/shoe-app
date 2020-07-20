@@ -8,16 +8,29 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   ScrollView,
+  Animated,
+  Easing,
+  TouchableOpacity,
 } from "react-native";
 
-import { mainStyleConstants } from "../main.style";
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from "react-navigation";
 
-// interface SliderProps {
-//   image: ImageSourcePropType;
-// }
+import { mainStyleConstants } from "../main.style";
+import { PaddingHorizontal } from "../App.style";
+
+import { BackArrowSvg } from "./Svg/BackArrow";
+
+interface SliderProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
 
 interface SliderState {
   active: number;
+  justInitiated: boolean;
 }
 
 const imageSources = [
@@ -26,12 +39,31 @@ const imageSources = [
   { source: require("../assets/nike/air3.png") },
 ];
 
-export class Slider extends Component<{}, SliderState> {
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+
+export class Slider extends Component<SliderProps, SliderState> {
+  private activeWidth: Animated.Value;
+
   readonly state = {
     active: 0,
+    justInitiated: true,
+  };
+
+  constructor(props: any) {
+    super(props);
+    this.activeWidth = new Animated.Value(10);
+  }
+
+  _handleOnPress = () => {
+    this.props.navigation.navigate("Home");
   };
 
   _handleOnSliderChange = (ev: NativeSyntheticEvent<NativeScrollEvent>) => {
+    this.activeWidth.setValue(10);
+    if (this.state.justInitiated) {
+      this.setState({ justInitiated: false });
+    }
+
     const slide = Math.ceil(
       ev.nativeEvent.contentOffset.x / ev.nativeEvent.layoutMeasurement.width
     );
@@ -39,11 +71,28 @@ export class Slider extends Component<{}, SliderState> {
     if (slide !== this.state.active) {
       this.setState({ active: slide });
     }
+
+    Animated.timing(this.activeWidth, {
+      toValue: 20,
+      duration: 100,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start();
   };
 
   render() {
     return (
       <View style={SliderStyle.main}>
+        <AnimatedTouchable onPress={this._handleOnPress} style={{ zIndex: 1 }}>
+          <BackArrowSvg
+            style={{
+              position: "absolute",
+              top: 20,
+              left: PaddingHorizontal,
+            }}
+          />
+        </AnimatedTouchable>
+
         <ScrollView
           pagingEnabled
           horizontal
@@ -62,13 +111,18 @@ export class Slider extends Component<{}, SliderState> {
         </ScrollView>
         <View style={SliderStyle.pagination}>
           {imageSources.map((imageSource, index) => (
-            <View
+            <Animated.View
               key={index}
               style={[
                 SliderStyle.bullet,
                 index === this.state.active
-                  ? SliderStyle.activeBullet
-                  : SliderStyle.passiveBullet,
+                  ? [
+                      SliderStyle.activeBullet,
+                      {
+                        width: this.state.justInitiated ? 20 : this.activeWidth,
+                      },
+                    ]
+                  : [SliderStyle.passiveBullet],
               ]}
             />
           ))}
@@ -86,7 +140,7 @@ const SliderStyle = StyleSheet.create({
     borderRadius: 25,
     paddingRight: 24,
     marginHorizontal: 6,
-    marginTop: Platform.OS !== "web" ? 32 : 6,
+    marginTop: Platform.OS !== "web" ? 32 : 0,
   },
   column: {
     width: Dimensions.get("window").width,

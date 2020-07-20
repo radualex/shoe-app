@@ -9,7 +9,7 @@ export const HomeStyle = StyleSheet.create({
     flexDirection: "column",
   },
   header: {
-    marginTop: 32,
+    marginTop: 28,
     marginBottom: 24,
     flex: 1,
     flexDirection: "row",

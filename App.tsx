@@ -35,7 +35,7 @@ export default class App extends Component<{}, AppState> {
   readonly state = {
     fontsLoaded: false,
     isDrawerOpen: false,
-    isHeaderDisplayed: false, // set to true
+    isHeaderDisplayed: true, // set to true
   };
 
   static navigationOptions = {
@@ -61,17 +61,22 @@ export default class App extends Component<{}, AppState> {
     this.setState({ isDrawerOpen });
   };
 
+  _checkHeaderStatus = () => {
+    const currentRouteName = navigationRef.current.getCurrentRoute().name;
+    if (currentRouteName === "Details") {
+      this.setState({ isHeaderDisplayed: false });
+    } else {
+      this.setState({ isHeaderDisplayed: true });
+    }
+  };
+
   render() {
     if (this.state.fontsLoaded) {
       return (
         <NavigationContainer
           ref={navigationRef}
           onStateChange={() => {
-            const currentRouteName = navigationRef.current.getCurrentRoute()
-              .name;
-            if (currentRouteName === "Details") {
-              this.setState({ isHeaderDisplayed: false });
-            }
+            this._checkHeaderStatus();
           }}
         >
           <Header
@@ -90,7 +95,7 @@ export default class App extends Component<{}, AppState> {
             }}
           ></Header>
           <Drawer.Navigator
-            initialRouteName="Details"
+            initialRouteName="Home"
             drawerStyle={{ width: "100%" }}
             screenOptions={{ swipeEnabled: false }}
             drawerContent={(props) => (
