@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
-import { PaddingHorizontal } from "../../App.style";
 import { mainStyleConstants } from "../../main.style";
+
+import { actuatedNormalize } from "../../lib/Utility";
+
+const marginValue = 10;
 
 export const DetailsStyle = StyleSheet.create({
   main: {
@@ -8,17 +11,12 @@ export const DetailsStyle = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-//   header: {
-//     marginTop: 32,
-//     marginBottom: 24,
-//     flex: 1,
-//     flexDirection: "row",
-//     alignItems: "center",
-//     justifyContent: "flex-start",
-//     paddingHorizontal: PaddingHorizontal,
-//     zIndex: 1,
-//   },
-//   content: {
-//     marginTop: 18,
-//   },
+  infoView: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  infoImage: { marginVertical: marginValue },
+  infoName: { fontSize: actuatedNormalize(32), marginBottom: marginValue },
+  infoPrice: { fontSize: actuatedNormalize(28), marginVertical: marginValue },
 });

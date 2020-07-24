@@ -16,6 +16,7 @@ interface HomeProps {
 }
 
 export class Home extends Component<HomeProps> {
+  // TODO: pass data to Details component
   _handleOnPress = () => {
     this.props.navigation.navigate("Details");
   };

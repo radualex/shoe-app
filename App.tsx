@@ -35,7 +35,7 @@ export default class App extends Component<{}, AppState> {
   readonly state = {
     fontsLoaded: false,
     isDrawerOpen: false,
-    isHeaderDisplayed: true, // set to true
+    isHeaderDisplayed: false, // set to true
   };
 
   static navigationOptions = {
@@ -95,7 +95,7 @@ export default class App extends Component<{}, AppState> {
             }}
           ></Header>
           <Drawer.Navigator
-            initialRouteName="Home"
+            initialRouteName="Details"
             drawerStyle={{ width: "100%" }}
             screenOptions={{ swipeEnabled: false }}
             drawerContent={(props) => (

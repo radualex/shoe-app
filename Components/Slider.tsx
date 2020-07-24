@@ -146,7 +146,7 @@ const SliderStyle = StyleSheet.create({
     width: Dimensions.get("window").width,
   },
   shoe: {
-    height: 150,
+    height: 200,
     width: Dimensions.get("window").width,
     resizeMode: "contain",
   },
