@@ -30,7 +30,6 @@ interface SliderProps {
 
 interface SliderState {
   active: number;
-  justInitiated: boolean;
 }
 
 const imageSources = [
@@ -42,16 +41,12 @@ const imageSources = [
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 export class Slider extends Component<SliderProps, SliderState> {
-  private activeWidth: Animated.Value;
-
   readonly state = {
     active: 0,
-    justInitiated: true,
   };
 
   constructor(props: any) {
     super(props);
-    this.activeWidth = new Animated.Value(10);
   }
 
   _handleOnPress = () => {
@@ -59,11 +54,6 @@ export class Slider extends Component<SliderProps, SliderState> {
   };
 
   _handleOnSliderChange = (ev: NativeSyntheticEvent<NativeScrollEvent>) => {
-    this.activeWidth.setValue(10);
-    if (this.state.justInitiated) {
-      this.setState({ justInitiated: false });
-    }
-
     const slide = Math.ceil(
       ev.nativeEvent.contentOffset.x / ev.nativeEvent.layoutMeasurement.width
     );
@@ -71,13 +61,6 @@ export class Slider extends Component<SliderProps, SliderState> {
     if (slide !== this.state.active) {
       this.setState({ active: slide });
     }
-
-    Animated.timing(this.activeWidth, {
-      toValue: 20,
-      duration: 100,
-      easing: Easing.linear,
-      useNativeDriver: false,
-    }).start();
   };
 
   render() {
@@ -116,13 +99,8 @@ export class Slider extends Component<SliderProps, SliderState> {
               style={[
                 SliderStyle.bullet,
                 index === this.state.active
-                  ? [
-                      SliderStyle.activeBullet,
-                      {
-                        width: this.state.justInitiated ? 20 : this.activeWidth,
-                      },
-                    ]
-                  : [SliderStyle.passiveBullet],
+                  ? SliderStyle.activeBullet
+                  : SliderStyle.passiveBullet,
               ]}
             />
           ))}
@@ -146,7 +124,7 @@ const SliderStyle = StyleSheet.create({
     width: Dimensions.get("window").width,
   },
   shoe: {
-    height: 200,
+    height: 250,
     width: Dimensions.get("window").width,
     resizeMode: "contain",
   },

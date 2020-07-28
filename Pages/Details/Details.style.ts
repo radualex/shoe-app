@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { mainStyleConstants } from "../../main.style";
 
 import { actuatedNormalize } from "../../lib/Utility";
+import { PaddingHorizontal } from "../../App.style";
 
 const marginValue = 10;
 
@@ -19,4 +20,15 @@ export const DetailsStyle = StyleSheet.create({
   infoImage: { marginVertical: marginValue },
   infoName: { fontSize: actuatedNormalize(32), marginBottom: marginValue },
   infoPrice: { fontSize: actuatedNormalize(28), marginVertical: marginValue },
+  sizeView: {
+    flex: 1,
+    flexDirection: "row",
+    marginHorizontal: PaddingHorizontal + 10,
+    justifyContent: "space-between",
+    marginTop: 32,
+    marginBottom: 24,
+  },
+  sizeText: { fontSize: actuatedNormalize(11) },
+  sizeGuideText: { color: mainStyleConstants.theme.light.darkerGray },
+  sizeCaroussel: { marginHorizontal: PaddingHorizontal + 10 },
 });
