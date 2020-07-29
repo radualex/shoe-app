@@ -82,6 +82,7 @@ export class Details extends Component<DetailsProps> {
           scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
           style={DetailsStyle.sizeCaroussel}
+          snapToInterval={150}
         >
           {sizes.map((sizeItem, index) => (
             <SizeCard
