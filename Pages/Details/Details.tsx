@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { ScrollView, View, Image } from "react-native";
+import {
+  ScrollView,
+  View,
+  Image,
+  Animated,
+  TouchableOpacity,
+} from "react-native";
 import { MainHeading } from "../../Components/Text/MainHeading";
 import { SecondaryText } from "../../Components/Text/SecondaryText";
 import { MainText } from "../../Components/Text/MainText";
@@ -13,6 +19,9 @@ import {
 
 import { DetailsStyle } from "./Details.style";
 
+import { ArrowSvg } from "../../Components/Svg/Arrow";
+import { HearthSvg } from "../../Components/Svg/Hearth";
+
 interface DetailsDto {
   shoeLogo: any;
   shoeName: String;
@@ -21,7 +30,6 @@ interface DetailsDto {
 
 interface DetailsProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-  // TODO: use detailsDto for data.
   detailsDto: DetailsDto;
 }
 
@@ -33,6 +41,8 @@ let sizes = [
   { size: 48, isAvailable: true },
   { size: 49, isAvailable: true },
 ];
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
 export class Details extends Component<DetailsProps> {
   readonly state = {
@@ -51,11 +61,13 @@ export class Details extends Component<DetailsProps> {
     }
   };
 
-  _handleOnPress = (ev: any) => {
+  _handleOnPressCard = (ev: any) => {
     if (ev.isAvailable) {
       this.setState({ active: ev.index });
     }
   };
+
+  _handleOnPressArrow = () => {};
 
   // TODO: should not reset position after click (re-render)
   render() {
@@ -90,11 +102,28 @@ export class Details extends Component<DetailsProps> {
               size={sizeItem.size}
               isAvailable={sizeItem.isAvailable}
               isActive={this.state.active === index}
-              onPress={this._handleOnPress}
+              onPress={this._handleOnPressCard}
               style={index === sizes.length - 1 ? { marginRight: 0 } : {}}
             />
           ))}
         </ScrollView>
+        <View style={DetailsStyle.descriptionView}>
+          <MainHeading style={DetailsStyle.sizeText}>Description</MainHeading>
+          <AnimatedTouchable
+            onPress={this._handleOnPressArrow}
+            style={{ zIndex: 1 }}
+          >
+            <ArrowSvg style={{ transform: [{ rotate: "90deg" }] }} />
+          </AnimatedTouchable>
+        </View>
+        <View style={DetailsStyle.buttonsView}>
+          <AnimatedTouchable style={DetailsStyle.favoriteButton}>
+            <HearthSvg style={DetailsStyle.favoriteHearthIcon} />
+          </AnimatedTouchable>
+          <AnimatedTouchable style={DetailsStyle.addToCardWrapper}>
+            <MainText style={DetailsStyle.addToCardText}>Add to Cart</MainText>
+          </AnimatedTouchable>
+        </View>
       </ScrollView>
     );
   }

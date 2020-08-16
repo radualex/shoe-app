@@ -40,7 +40,10 @@ export class Card extends Component<CardProps> {
             {this.props.currency} {this.props.price}
           </SecondaryText>
         </TouchableOpacity>
-        <HearthSvg style={FavouriteStyle} />
+        <HearthSvg
+          style={FavouriteStyle}
+          onPress={() => console.log("hearth")}
+        />
       </View>
     );
   }

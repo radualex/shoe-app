@@ -1,10 +1,14 @@
 import React from "react";
-import { View } from "react-native";
+import { View, GestureResponderEvent } from "react-native";
 import Svg, { Rect, G, Path } from "react-native-svg";
 
 import { SvgProps } from "./Interfaces/SvgProps";
 
-export class HearthSvg extends React.Component<SvgProps> {
+interface HearthSvgProps extends SvgProps {
+  onPress?: (event: GestureResponderEvent) => void;
+}
+
+export class HearthSvg extends React.Component<HearthSvgProps> {
   render() {
     return (
       <View style={this.props.style}>
@@ -12,7 +16,7 @@ export class HearthSvg extends React.Component<SvgProps> {
           width={18}
           height={18}
           viewBox={"0 0 24 24"}
-          onPress={() => console.log("hearth")}
+          onPress={this.props.onPress}
         >
           <Rect
             width={"100%"}

@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Animated,
-  StyleProp,
-  ViewStyle,
-  GestureResponderEvent,
-} from "react-native";
+import { StyleSheet, Animated, StyleProp, ViewStyle } from "react-native";
 
 import { mainStyleConstants } from "../main.style";
 
